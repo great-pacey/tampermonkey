@@ -70,6 +70,8 @@
 		});
 	}
 
+	const CLASS_NAME = 'tm_class_name'
+
 	function createSpan(n) {
 		const el = document.createElement('span');
 		el.style.fontWeight = 'bold';
@@ -77,15 +79,23 @@
 		el.style.position = 'absolute';
 		el.style.right = 0;
 		el.style.top = 0;
-		el.style.fontSize = '20px ';
+		el.style.fontSize = '20px';
 		el.innerText = n;
+		el.classList.value = CLASS_NAME;
 		return el;
 	}
 
 	function setEls(orders) {
 		const selector = isFlex ? '.JIIxO ._1OUGS ._9tla3' : '.list-item .place-container';
 		const els = [].slice.call(document.body.querySelectorAll(selector));
-		orders.forEach((n, I) => { els[I].appendChild(createSpan(n)) });
+		orders.forEach((n, I) => { 
+			const el = els[I], span = el.querySelector('.' + CLASS_NAME);
+			if (span) {
+				span.innerText = n;
+			} else {
+				el.appendChild(createSpan(n)) 
+			}
+		});
 	}
 
 	const sum = arr => arr.reduce((p, n) => p + n, 0);
