@@ -4,7 +4,6 @@
 // @version      0.1
 // @author       You
 // @match        *://www.aliexpress.com/*
-// @require      https://code.jquery.com/jquery-3.6.0.min.js
 // @require      https://unpkg.com/axios/dist/axios.min.js
 // @grant GM_setValue
 // @grant GM_getValue
@@ -21,7 +20,7 @@
   GM_registerMenuCommand('查看', () => {
     const id = getId();
     const recordMap = GM_getValue(GM_key) || {};
-    console.log(recordMap);
+    console.log(id ? recordMap[id] : recordMap);
   })
 
   GM_registerMenuCommand('记录当前', record);
